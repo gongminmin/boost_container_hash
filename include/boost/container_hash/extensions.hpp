@@ -21,7 +21,6 @@
 #include <boost/container_hash/hash.hpp>
 #include <boost/detail/container_fwd.hpp>
 #include <boost/core/enable_if.hpp>
-#include <boost/static_assert.hpp>
 
 #if !defined(BOOST_NO_CXX11_HDR_ARRAY)
 #   include <array>

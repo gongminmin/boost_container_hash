@@ -17,7 +17,6 @@ target_link_libraries(boost_container_hash
         Boost::core
         Boost::detail
         Boost::integer
-        Boost::static_assert
         Boost::type_traits
 )
 
