@@ -3,9 +3,8 @@
 // Distributed under the Boost Software License, Version 1.0. (See accompanying
 // file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
-#include <boost/type_traits/is_same.hpp>
-#include <boost/type_traits/is_convertible.hpp>
 #include <cmath>
+#include <type_traits>
 
 namespace test
 {
@@ -15,19 +14,19 @@ namespace test
         template <class T2>
         static void equals(T2)
         {
-            static_assert(boost::is_same<T1, T2>::value);
+            static_assert(std::is_same<T1, T2>::value);
         }
 
         template <class T2>
         static void equals_ref(T2&)
         {
-            static_assert(boost::is_same<T1, T2>::value);
+            static_assert(std::is_same<T1, T2>::value);
         }
 
         template <class T2>
         static void convertible(T2)
         {
-            static_assert(boost::is_convertible<T2, T1>::value);
+            static_assert(std::is_convertible<T2, T1>::value);
         }
     };
 }

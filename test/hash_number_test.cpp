@@ -15,7 +15,7 @@
 #include <boost/core/lightweight_test.hpp>
 
 #include <boost/container_hash/detail/limits.hpp>
-#include <boost/core/enable_if.hpp>
+#include <type_traits>
 
 #include "./compile_time.hpp"
 
@@ -32,7 +32,7 @@
 
 template <class T>
 void numeric_extra_tests(typename
-    boost::enable_if_c<boost::hash_detail::limits<T>::is_integer,
+    std::enable_if_c<boost::hash_detail::limits<T>::is_integer,
         void*>::type = 0)
 {
     typedef boost::hash_detail::limits<T> limits;
@@ -49,7 +49,7 @@ void numeric_extra_tests(typename
 
 template <class T>
 void numeric_extra_tests(typename
-    boost::disable_if_c<boost::hash_detail::limits<T>::is_integer,
+    boost::enable_if_c<!boost::hash_detail::limits<T>::is_integer,
         void*>::type = 0)
 {
 }

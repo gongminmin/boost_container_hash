@@ -20,7 +20,6 @@
 
 #include <boost/container_hash/hash.hpp>
 #include <boost/detail/container_fwd.hpp>
-#include <boost/core/enable_if.hpp>
 
 #if !defined(BOOST_NO_CXX11_HDR_ARRAY)
 #   include <array>
@@ -31,10 +30,7 @@
 #endif
 
 #include <memory>
-
-#if defined(BOOST_NO_FUNCTION_TEMPLATE_ORDERING)
-#include <boost/type_traits/is_array.hpp>
-#endif
+#include <type_traits>
 
 namespace boost
 {
@@ -129,14 +125,14 @@ namespace boost
 #if !defined(BOOST_NO_CXX11_HDR_TUPLE)
     namespace hash_detail {
         template <std::size_t I, typename T>
-        inline typename boost::enable_if_c<(I == std::tuple_size<T>::value),
+        inline typename std::enable_if_c<(I == std::tuple_size<T>::value),
                 void>::type
             hash_combine_tuple(std::size_t&, T const&)
         {
         }
 
         template <std::size_t I, typename T>
-        inline typename boost::enable_if_c<(I < std::tuple_size<T>::value),
+        inline typename std::enable_if_c<(I < std::tuple_size<T>::value),
                 void>::type
             hash_combine_tuple(std::size_t& seed, T const& v)
         {
@@ -281,7 +277,7 @@ namespace boost
 
         template <class T>
         struct call_hash
-            : public call_hash_impl<boost::is_array<T>::value>
+            : public call_hash_impl<std::is_array<T>::value>
                 ::BOOST_NESTED_TEMPLATE inner<T>
         {
         };
